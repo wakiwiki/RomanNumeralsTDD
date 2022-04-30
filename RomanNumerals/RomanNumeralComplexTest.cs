@@ -27,10 +27,10 @@ public class RomanNumeralComplexTest
     [InlineData("I", 1)]
     [InlineData("III", 3)]
     [InlineData("IV", 4)]
-    //[InlineData("V",5)]
-    //[InlineData("VII", 7)]
-    //[InlineData("IX", 9)]
-    //[InlineData("X", 10)]
+    [InlineData("V", 5)]
+    [InlineData("VII", 7)]
+    [InlineData("IX", 9)]
+    [InlineData("X", 10)]
     public void return_corresponding_number_from_one_to_ten(string romanNumeral, int expectedNumber)
     {
         int number = 0;
