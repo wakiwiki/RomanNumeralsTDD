@@ -2,7 +2,7 @@ namespace RomanNumerals;
 
 public static class RomanNumeralTestHelper
 {
-    public static decimal FromBaseRomanNumeralSymbols(this string baseSymbol)
+    public static int FromBaseRomanNumeralSymbols(this string baseSymbol)
     {
         switch (baseSymbol)
         {
