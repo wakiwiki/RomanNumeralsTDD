@@ -13,18 +13,11 @@ public class RomanNumeralComplexTest
     {
         var characters = romanNumeral.ToCharArray();
         int number = 0;
-        if (expectedNumber == 2)
+        for (int i = 0; i < characters.Length; i++)
         {
-            number += $"{characters[1]}".FromBaseRomanNumeralSymbols();
-            number += $"{characters[0]}".FromBaseRomanNumeralSymbols();
+            number += $"{characters[i]}".FromBaseRomanNumeralSymbols();
         }
 
-        if (expectedNumber == 3)
-        {
-            number += $"{characters[2]}".FromBaseRomanNumeralSymbols();
-            number += $"{characters[1]}".FromBaseRomanNumeralSymbols();
-            number += $"{characters[0]}".FromBaseRomanNumeralSymbols();
-        }
         number.Should().Be(expectedNumber);
     }
 }
