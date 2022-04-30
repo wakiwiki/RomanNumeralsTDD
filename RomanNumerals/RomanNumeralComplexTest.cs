@@ -52,4 +52,35 @@ public class RomanNumeralComplexTest
     }
 
 
+    [Theory]
+    [InlineData("I", 1)]
+    [InlineData("III", 3)]
+    [InlineData("IV", 4)]
+    [InlineData("V", 5)]
+    [InlineData("VII", 7)]
+    [InlineData("IX", 9)]
+    [InlineData("X", 10)]
+    [InlineData("XLIX", 49)]
+    [InlineData("CCCIV", 304)]
+    [InlineData("MMMCIV", 3104)]
+    [InlineData("MMMCMLXXXVII", 3987)]
+    public void return_corresponding_number(string romanNumeral, int expectedNumber)
+    {
+        int number = 0;
+        int prevNumber = 0;
+        var map = romanNumeral.ToCharArray()
+            .Select((c, i) => new { Index = i, Value = c, Number = $"{c}".FromBaseRomanNumeralSymbols() }).OrderByDescending(x=>x.Index).ToList();
+        foreach (var item in map)
+        {
+            if (number == 0) number += item.Number;
+            else
+            {
+                if (prevNumber > item.Number) number -= item.Number;
+                else number += item.Number;
+            }
+            prevNumber = item.Number;
+        }
+        number.Should().Be(expectedNumber);
+    }
+
 }
