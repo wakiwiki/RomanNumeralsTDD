@@ -2,7 +2,7 @@ namespace RomanNumerals.Core;
 
 public static class RomanNumeralHelper
 {
-    public static int FromBaseRomanNumeralSymbols(this string baseSymbol)
+    public static int FromBaseSymbol(this string baseSymbol)
     {
         switch (baseSymbol)
         {
@@ -20,7 +20,7 @@ public static class RomanNumeralHelper
     public static IEnumerable<RomanNumeralCharMap> ToCharMap(this string romanNumeral)
     {
         var map = romanNumeral.ToCharArray()
-            .Select((c, i) => new RomanNumeralCharMap { Index = i, Value = c, Number = $"{c}".FromBaseRomanNumeralSymbols() });
+            .Select((c, i) => new RomanNumeralCharMap { Index = i, Value = c, Number = $"{c}".FromBaseSymbol() });
         return map;
     }
 }

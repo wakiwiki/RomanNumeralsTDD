@@ -16,7 +16,7 @@ public class RomanNumeralComplexTests
         int number = 0;
         for (int i = 0; i < characters.Length; i++)
         {
-            number += $"{characters[i]}".FromBaseRomanNumeralSymbols();
+            number += $"{characters[i]}".FromBaseSymbol();
         }
 
         number.Should().Be(expectedNumber);
