@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FluentAssertions;
+using RomanNumerals.Core;
 using System.Linq;
-using FluentAssertions;
 using Xunit;
 
-namespace RomanNumerals;
+namespace RomanNumerals.Test;
 
-public class RomanNumeralComplexTest
+public class RomanNumeralComplexTests
 {
     [Theory]
     [InlineData("II", 2)]
@@ -34,11 +33,10 @@ public class RomanNumeralComplexTest
     public void return_corresponding_number_from_one_to_ten(string romanNumeral, int expectedNumber)
     {
         int number = 0;
-        var map = romanNumeral.ToCharArray()
-            .Select((c, i) => new { Index = i, Value = c, Number = $"{c}".FromBaseRomanNumeralSymbols() }).ToList();
+        var map = romanNumeral.ToCharMap();
         foreach (var item in map)
         {
-            if (map.Find(x => x.Index == item.Index - 1)?.Number < item.Number)
+            if (map.FirstOrDefault(x => x.Index == item.Index - 1).Number < item.Number)
             {
                 number = item.Number - number;
             }
@@ -68,8 +66,7 @@ public class RomanNumeralComplexTest
     {
         int number = 0;
         int prevNumber = 0;
-        var map = romanNumeral.ToCharArray()
-            .Select((c, i) => new { Index = i, Value = c, Number = $"{c}".FromBaseRomanNumeralSymbols() }).OrderByDescending(x=>x.Index).ToList();
+        var map = romanNumeral.ToCharMap().OrderByDescending(x => x.Index);
         foreach (var item in map)
         {
             if (number == 0) number += item.Number;
